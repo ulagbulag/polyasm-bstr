@@ -15,7 +15,7 @@ pub static WHITESPACE_ANCHORED_FWD: Lazy<DFA<&'static [u32]>> =
             _align: [],
             #[cfg(target_endian = "big")]
             bytes: *include_bytes!("whitespace_anchored_fwd.bigendian.dfa"),
-            #[cfg(target_endian = "little")]
+            #[cfg(any(target_endian = "little", target_abi = "polyasm"))]
             bytes: *include_bytes!("whitespace_anchored_fwd.littleendian.dfa"),
         };
         let (dfa, _) = DFA::from_bytes(&ALIGNED.bytes)

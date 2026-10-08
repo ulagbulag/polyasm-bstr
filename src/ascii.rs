@@ -222,7 +222,7 @@ unsafe fn first_non_ascii_byte_slow(
 /// The position returned is always in the inclusive range [0, 7].
 #[cfg(any(test, miri, not(target_arch = "x86_64")))]
 fn first_non_ascii_byte_mask(mask: usize) -> usize {
-    #[cfg(target_endian = "little")]
+    #[cfg(any(target_endian = "little", target_abi = "polyasm"))]
     {
         mask.trailing_zeros() as usize / 8
     }

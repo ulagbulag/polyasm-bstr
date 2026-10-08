@@ -15,7 +15,7 @@ pub static REGIONAL_INDICATOR_REV: Lazy<DFA<&'static [u32]>> =
             _align: [],
             #[cfg(target_endian = "big")]
             bytes: *include_bytes!("regional_indicator_rev.bigendian.dfa"),
-            #[cfg(target_endian = "little")]
+            #[cfg(any(target_endian = "little", target_abi = "polyasm"))]
             bytes: *include_bytes!("regional_indicator_rev.littleendian.dfa"),
         };
         let (dfa, _) = DFA::from_bytes(&ALIGNED.bytes)

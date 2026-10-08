@@ -15,7 +15,7 @@ pub static WHITESPACE_ANCHORED_REV: Lazy<DFA<&'static [u32]>> =
             _align: [],
             #[cfg(target_endian = "big")]
             bytes: *include_bytes!("whitespace_anchored_rev.bigendian.dfa"),
-            #[cfg(target_endian = "little")]
+            #[cfg(any(target_endian = "little", target_abi = "polyasm"))]
             bytes: *include_bytes!("whitespace_anchored_rev.littleendian.dfa"),
         };
         let (dfa, _) = DFA::from_bytes(&ALIGNED.bytes)

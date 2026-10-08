@@ -43,6 +43,9 @@ quickcheck = { version = "1", default-features = false }
 ucd-parse = "0.1.3"
 unicode-segmentation = "1.2.1"
 
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(target_abi, values("polyasm"))'] }
+
 [package.metadata.docs.rs]
 # We want to document all features.
 all-features = true
